@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
 
@@ -13,12 +14,16 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Next Superstar",
   description: "Discover the Next Superstars of Bangladesh",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
       <body className={`${cormorant.variable} ${montserrat.variable} antialiased`}>
