@@ -5,6 +5,7 @@ import { Mail, Phone, Building2 } from "lucide-react";
 import Container from "@/components/layout/Container";
 import SectionBadge from "@/components/ui/SectionBadge";
 import PrimaryButton from "@/components/ui/PrimaryButton";
+import FloatingInput from "@/components/ui/FloatingInput";
 
 const contactDetails = [
   {
@@ -29,48 +30,6 @@ const officeHours = [
   { day: "Saturday", hours: "10:00 AM - 4:00 PM BST" },
   { day: "Sunday", hours: "Closed" },
 ];
-
-function FloatingInput({ id, label, type = "text", value, onChange, required, multiline = false }) {
-  const hasValue = value && value.length > 0;
-  const commonClasses =
-    "peer w-full border-0 bg-transparent pb-[20px] pt-6 text-[16px] text-black outline-none placeholder-transparent focus:ring-0";
-
-  return (
-    <div className="relative border-b border-solid border-[#666666] focus-within:border-[#AF8F5B]">
-      {multiline ? (
-        <textarea
-          id={id}
-          value={value}
-          onChange={onChange}
-          required={required}
-          rows={1}
-          placeholder={label}
-          className={`${commonClasses} resize-none min-h-[28px]`}
-        />
-      ) : (
-        <input
-          id={id}
-          type={type}
-          value={value}
-          onChange={onChange}
-          required={required}
-          placeholder={label}
-          className={commonClasses}
-        />
-      )}
-      <label
-        htmlFor={id}
-        className={`pointer-events-none absolute left-0 text-[16px] leading-[19.5px] text-[#666666] transition-all duration-200 ${
-          hasValue
-            ? "top-0 text-[12px] text-[#AF8F5B]"
-            : "top-6 peer-focus:top-0 peer-focus:text-[12px] peer-focus:text-[#AF8F5B]"
-        }`}
-      >
-        {label}
-      </label>
-    </div>
-  );
-}
 
 export default function ContactSection() {
   const [form, setForm] = useState({ fullName: "", email: "", message: "" });

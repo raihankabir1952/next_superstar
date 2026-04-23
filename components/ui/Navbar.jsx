@@ -11,6 +11,7 @@ const navItems = [
   { label: "Contestants", href: "/contestants" },
   { label: "News", href: "/news" },
   { label: "Contact", href: "/contact" },
+  
 ];
 
 function LogoStar({ size = 35 }) {
@@ -87,7 +88,7 @@ export default function Navbar({ variant = "dark", isAuthenticated = false }) {
                 Log Out
               </button>
             ) : (
-              <PrimaryButton as={Link} href="#">
+              <PrimaryButton as={Link} href="/register">
                 Register Now
               </PrimaryButton>
             )}
