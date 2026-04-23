@@ -10,7 +10,7 @@ const navItems = [
   { label: "About", href: "/about" },
   { label: "Contestants", href: "/contestants" },
   { label: "News", href: "/news" },
-  { label: "Contact", href: "#" },
+  { label: "Contact", href: "/contact" },
 ];
 
 function LogoStar({ size = 35 }) {
