@@ -2,9 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import Container from "@/components/layout/Container";
 import PrimaryButton from "@/components/ui/PrimaryButton";
-import { ChevronLeft, Play } from "lucide-react";
+import { ChevronLeft, Play, Check } from "lucide-react";
+
+const MAX_VOTES = 3;
+const STORAGE_KEY = "votedContestants";
 
 function StarIcon({ size = 24 }) {
   return (
@@ -29,6 +33,44 @@ function StarIcon({ size = 24 }) {
 }
 
 export default function ContestantProfileSection({ contestant }) {
+  const [mounted, setMounted] = useState(false);
+  const [hasVoted, setHasVoted] = useState(false);
+
+  // Load vote state from localStorage after mount (avoid hydration mismatch)
+  useEffect(() => {
+    setMounted(true);
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      const votedList = stored ? JSON.parse(stored) : [];
+      setHasVoted(votedList.includes(contestant.slug));
+    } catch (e) {
+      setHasVoted(false);
+    }
+  }, [contestant.slug]);
+
+  const toggleVote = () => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      const votedList = stored ? JSON.parse(stored) : [];
+
+      if (hasVoted) {
+        const newList = votedList.filter((s) => s !== contestant.slug);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(newList));
+        setHasVoted(false);
+      } else {
+        if (votedList.length >= MAX_VOTES) {
+          alert("You can only vote for up to " + MAX_VOTES + " contestants a day");
+          return;
+        }
+        const newList = [...votedList, contestant.slug];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(newList));
+        setHasVoted(true);
+      }
+    } catch (e) {
+      console.error("Voting error:", e);
+    }
+  };
+
   return (
     <section className="bg-white pt-20 pb-[140px]">
       <Container>
@@ -82,9 +124,33 @@ export default function ContestantProfileSection({ contestant }) {
                 </div>
               </div>
 
-              <PrimaryButton className="w-fit">
-                Vote Contestant No. {contestant.number}
-              </PrimaryButton>
+              {/* Vote UI — changes based on state */}
+              {mounted && hasVoted ? (
+                <div className="flex w-full max-w-[332px] flex-col gap-5">
+                  <div className="flex w-[158px] flex-col gap-3">
+                    <div className="flex items-center justify-center gap-[10px]">
+                      <Check size={24} strokeWidth={2.5} className="text-[#AF8F5B]" />
+                      <span className="text-[16px] font-semibold text-[#AF8F5B]">
+                        You Voted
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={toggleVote}
+                      className="inline-flex h-[48px] w-full items-center justify-center rounded-[12px] border border-[#AF8F5B] px-6 text-[16px] font-semibold text-[#AF8F5B] transition hover:bg-[#AF8F5B]/10"
+                    >
+                      Remove Vote
+                    </button>
+                  </div>
+                  <p className="text-[16px] text-[#666666]">
+                    Users Can Vote Up to {MAX_VOTES} Participants a Day
+                  </p>
+                </div>
+              ) : (
+                <PrimaryButton className="w-fit" onClick={toggleVote}>
+                  Vote Contestant No. {contestant.number}
+                </PrimaryButton>
+              )}
             </div>
           </div>
 

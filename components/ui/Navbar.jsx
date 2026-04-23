@@ -7,7 +7,7 @@ import PrimaryButton from "@/components/ui/PrimaryButton";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
   { label: "Contestants", href: "/contestants" },
   { label: "News", href: "#" },
   { label: "Contact", href: "#" },
@@ -36,12 +36,7 @@ function LogoStar({ size = 35 }) {
   );
 }
 
-/**
- * Navbar with two variants:
- * - "dark" (default): absolute on hero, semi-transparent dark bg, white text
- * - "light": static on white pages, white bg, black text
- */
-export default function Navbar({ variant = "dark" }) {
+export default function Navbar({ variant = "dark", isAuthenticated = false }) {
   const [open, setOpen] = useState(false);
 
   const isLight = variant === "light";
@@ -52,6 +47,14 @@ export default function Navbar({ variant = "dark" }) {
 
   const textColor = isLight ? "text-black" : "text-white";
   const hoverColor = isLight ? "hover:text-black/70" : "hover:text-white/80";
+  const mutedColor = isLight ? "text-[#666666]" : "text-white/80";
+
+  const handleLogOut = () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("votedContestants");
+    }
+    window.location.href = "/";
+  };
 
   return (
     <header className={wrapperClass}>
@@ -59,7 +62,7 @@ export default function Navbar({ variant = "dark" }) {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex shrink-0 items-center gap-[10px]">
             <LogoStar size={35} />
-            <span className={`text-[30px] font-normal leading-none ${textColor}`}>
+            <span className={"text-[30px] font-normal leading-none " + textColor}>
               Next Superstar
             </span>
           </Link>
@@ -69,25 +72,36 @@ export default function Navbar({ variant = "dark" }) {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`text-[18px] font-medium transition ${textColor} ${hoverColor}`}
+                className={"text-[18px] font-medium transition " + textColor + " " + hoverColor}
               >
                 {item.label}
               </Link>
             ))}
 
-            <PrimaryButton as={Link} href="#">
-              Register Now
-            </PrimaryButton>
+            {isAuthenticated ? (
+              <button
+                type="button"
+                onClick={handleLogOut}
+                className={"pl-[10px] text-[16px] font-medium transition " + mutedColor + " hover:text-black"}
+              >
+                Log Out
+              </button>
+            ) : (
+              <PrimaryButton as={Link} href="#">
+                Register Now
+              </PrimaryButton>
+            )}
           </nav>
 
           <button
             type="button"
             onClick={() => setOpen((prev) => !prev)}
-            className={`flex h-11 w-11 items-center justify-center rounded-lg border lg:hidden ${
-              isLight
+            className={
+              "flex h-11 w-11 items-center justify-center rounded-lg border lg:hidden " +
+              (isLight
                 ? "border-black/20 bg-black/5 text-black"
-                : "border-white/20 bg-white/10 text-white"
-            }`}
+                : "border-white/20 bg-white/10 text-white")
+            }
             aria-label="Toggle menu"
           >
             <span className="text-xl leading-none">{open ? "×" : "☰"}</span>
@@ -107,9 +121,19 @@ export default function Navbar({ variant = "dark" }) {
                   {item.label}
                 </Link>
               ))}
-              <PrimaryButton as={Link} href="#">
-                Register Now
-              </PrimaryButton>
+              {isAuthenticated ? (
+                <button
+                  type="button"
+                  onClick={handleLogOut}
+                  className="text-left text-[15px] font-medium text-white/80"
+                >
+                  Log Out
+                </button>
+              ) : (
+                <PrimaryButton as={Link} href="#">
+                  Register Now
+                </PrimaryButton>
+              )}
             </div>
           </div>
         )}
