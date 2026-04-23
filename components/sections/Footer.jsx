@@ -16,109 +16,107 @@ const supportLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F5F5F3] pt-[60px] pb-[50px]">
+    <footer className="bg-white pb-5 pt-[60px]">
       <Container>
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
-          <div>
-            <div className="flex items-center gap-3">
-              <Image
-                src="/images/logo/logo-star.svg"
-                alt="Next Superstar logo"
-                width={26}
-                height={26}
-                className="shrink-0"
-              />
+        <div className="flex flex-col gap-[50px]">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+            {/* Brand column */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2">
+                <Image
+                  src="/images/logo/logo-star.svg"
+                  alt="Next Superstar logo"
+                  width={24}
+                  height={24}
+                  className="shrink-0"
+                />
+                <span className="whitespace-nowrap text-[20px] font-normal leading-none text-black">
+                  Next Superstar
+                </span>
+              </div>
 
-              <span className="whitespace-nowrap text-[20px] font-normal leading-none text-black">
-                Next Superstar
-              </span>
+              <p className="max-w-[405px] text-[14px] leading-[22.75px] text-[#666666]">
+                Where talent meets opportunity. Discover your path to stardom
+                with guidance from industry leaders.
+              </p>
+
+              <div className="flex items-center gap-5">
+                <Link href="#">
+                  <Image
+                    src="/images/icons/facebook.svg"
+                    alt="Facebook"
+                    width={24}
+                    height={24}
+                    className="opacity-80 transition hover:opacity-100"
+                  />
+                </Link>
+                <Link href="#">
+                  <Image
+                    src="/images/icons/twitter.svg"
+                    alt="Twitter"
+                    width={20}
+                    height={20}
+                    className="opacity-80 transition hover:opacity-100"
+                  />
+                </Link>
+                <Link href="#">
+                  <Image
+                    src="/images/icons/instagram.svg"
+                    alt="Instagram"
+                    width={24}
+                    height={24}
+                    className="opacity-80 transition hover:opacity-100"
+                  />
+                </Link>
+              </div>
             </div>
 
-            <p className="mt-5 max-w-[320px] text-sm leading-[1.8] text-[#666666]">
-              Where talent meets opportunity. Discover your path to
-              stardom with guidance from industry leaders.
+            {/* Quick Links */}
+            <div className="flex flex-col gap-3">
+              <h4 className="text-[14px] font-semibold leading-5 text-[#AF8F5B]">
+                Quick Links
+              </h4>
+              <ul className="flex flex-col gap-2">
+                {quickLinks.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="text-[14px] leading-5 text-[#666666] transition hover:text-black"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Support */}
+            <div className="flex flex-col gap-3">
+              <h4 className="text-[14px] font-semibold leading-5 text-[#AF8F5B]">
+                Support
+              </h4>
+              <ul className="flex flex-col gap-2">
+                {supportLinks.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="text-[14px] leading-5 text-[#666666] transition hover:text-black"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="flex flex-col items-center justify-between gap-4 border-t border-[#AF8F5B] pt-4 text-[14px] text-[#666666] sm:flex-row">
+            <p>© 2026 Next Superstar. ATN Bangla. All rights reserved.</p>
+            <p className="flex items-center gap-1">
+              Made by <span className="text-[#AF8F5B]">ApplyingNext</span>
             </p>
-
-            <div className="mt-6 flex items-center gap-4">
-              <Link href="#">
-                <Image
-                  src="/images/icons/facebook.svg"
-                  alt="Facebook"
-                  width={20}
-                  height={20}
-                  className="opacity-80 transition hover:opacity-100"
-                />
-              </Link>
-
-              <Link href="#">
-                <Image
-                  src="/images/icons/twitter.svg"
-                  alt="Twitter"
-                  width={20}
-                  height={20}
-                  className="opacity-80 transition hover:opacity-100"
-                />
-              </Link>
-
-              <Link href="#">
-                <Image
-                  src="/images/icons/instagram.svg"
-                  alt="Instagram"
-                  width={20}
-                  height={20}
-                  className="opacity-80 transition hover:opacity-100"
-                />
-              </Link>
-            </div>
           </div>
-
-          <div>
-            <h4 className="text-sm font-medium text-[#AF8F5B]">
-              Quick Links
-            </h4>
-
-            <ul className="mt-5 space-y-3">
-              {quickLinks.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-[#666666] transition hover:text-black"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-medium text-[#AF8F5B]">
-              Support
-            </h4>
-
-            <ul className="mt-5 space-y-3">
-              {supportLinks.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-[#666666] transition hover:text-black"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-10 h-px w-full bg-[#AF8F5B]/40" />
-
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 text-xs text-[#666666] sm:flex-row">
-          <p>© 2026 Next Superstar. ATN Bangla. All rights reserved.</p>
-
-          <p>
-            Made by <span className="text-[#AF8F5B]">ApplyingNext</span>
-          </p>
         </div>
       </Container>
     </footer>

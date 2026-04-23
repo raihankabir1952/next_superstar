@@ -3,66 +3,53 @@ import PrimaryButton from "@/components/ui/PrimaryButton";
 import { CalendarDays, Award, MapPin } from "lucide-react";
 
 const highlights = [
-  {
-    title: "Application Deadline",
-    value: "April 20, 2026",
-    icon: CalendarDays,
-  },
-  {
-    title: "Prize Package",
-    value: "BDT 1 Lakh",
-    icon: Award,
-  },
-  {
-    title: "Audition Cities",
-    value: "All 64 Districts",
-    icon: MapPin,
-  },
+  { title: "Application Deadline", value: "April 20, 2026", icon: CalendarDays },
+  { title: "Prize Package", value: "BDT 1 Lakh", icon: Award },
+  { title: "Audition Cities", value: "All 64 Districts", icon: MapPin },
 ];
 
 export default function CtaSection() {
   return (
-    <section className="bg-[#EDE8DF] py-20 sm:py-24 lg:py-[88px]">
+    <section className="bg-[rgba(238,231,209,0.24)] py-[50px]">
       <Container>
-        <div className="flex flex-col items-center text-center">
-          <h2 className="text-[38px] font-light leading-[1.1] tracking-[0.01em] text-black sm:text-[48px] lg:text-[60px]">
-            Begin Your Stardom
-          </h2>
+        <div className="flex flex-col items-center gap-[50px] text-center">
+          <div className="flex flex-col items-center gap-5">
+            <h2 className="[font-family:var(--font-montserrat),sans-serif] text-[32px] font-medium leading-[1.15] text-black sm:text-[36px] lg:text-[40px]">
+              Begin Your Stardom
+            </h2>
+            <p className="[font-family:var(--font-montserrat),sans-serif] text-[20px] font-medium text-black sm:text-[24px] lg:text-[30px]">
+              Applications open April 20, 2026 · Limited spots available
+            </p>
+          </div>
 
-          <p className="mt-4 text-base leading-[1.7] text-black sm:text-lg">
-            Applications open April 20, 2026 · Limited spots available
-          </p>
+          <div className="flex flex-col items-center gap-3">
+            <PrimaryButton>
+              Create Account &amp; Start Application
+            </PrimaryButton>
+            <p className="text-[16px] text-black">
+              Free · Under 2 minutes · All 64 districts welcome
+            </p>
+          </div>
 
-          <PrimaryButton className="mt-8">
-            Create Account &amp; Start Application
-          </PrimaryButton>
+          <div className="h-px w-full bg-[#AF8F5B]/40" />
 
-          <p className="mt-4 text-sm leading-[1.6] text-[#666666]">
-            Free · Under 2 minutes · All 64 districts welcome
-          </p>
-
-          <div className="mt-10 h-px w-full bg-[#D8CFBF]" />
-
-          <div className="mt-10 grid w-full grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-12">
+          <div className="flex w-full flex-col items-center gap-10 sm:flex-row sm:justify-center sm:gap-[100px]">
             {highlights.map((item) => {
               const Icon = item.icon;
-
               return (
                 <div
                   key={item.title}
-                  className="flex flex-col items-center text-center"
+                  className="flex w-[158px] flex-col items-center gap-5 text-center"
                 >
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-[#D8CFBF] bg-white">
-                    <Icon size={18} strokeWidth={1.75} className="text-[#AF8F5B]" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-[4px] border border-[#AF8F5B] p-[2px]">
+                    <Icon size={22} strokeWidth={1.5} className="text-[#AF8F5B]" />
                   </div>
-
-                  <h3 className="text-sm font-medium uppercase tracking-[0.08em] text-black">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-2 text-sm text-[#666666] sm:text-[15px]">
-                    {item.value}
-                  </p>
+                  <div className="flex flex-col gap-[10px]">
+                    <h3 className="text-[16px] font-medium text-black">
+                      {item.title}
+                    </h3>
+                    <p className="text-[16px] text-black">{item.value}</p>
+                  </div>
                 </div>
               );
             })}

@@ -13,12 +13,12 @@ const navItems = [
   { label: "Contact", href: "#" },
 ];
 
-function LogoStar() {
+function LogoStar({ size = 35 }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="28"
-      height="28"
+      width={size}
+      height={size}
       viewBox="0 0 28 28"
       fill="none"
       aria-hidden="true"
@@ -40,22 +40,22 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
-      <Container className="pt-6">
+    <header className="absolute inset-x-0 top-0 z-50 bg-[rgba(61,46,21,0.37)]">
+      <Container className="py-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex shrink-0 items-center gap-3">
-            <LogoStar />
+          <Link href="/" className="flex shrink-0 items-center gap-[10px]">
+            <LogoStar size={35} />
             <span className="text-[30px] font-normal leading-none text-white">
               Next Superstar
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-10 lg:flex">
+          <nav className="hidden items-center gap-8 lg:flex">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-[15px] font-medium text-white transition hover:text-white/80"
+                className="text-[18px] font-medium text-white transition hover:text-white/80"
               >
                 {item.label}
               </Link>
@@ -84,12 +84,11 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="text-sm font-medium"
+                  className="text-[15px] font-medium"
                 >
                   {item.label}
                 </Link>
               ))}
-
               <PrimaryButton as={Link} href="#">
                 Register Now
               </PrimaryButton>
