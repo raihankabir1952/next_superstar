@@ -79,7 +79,7 @@ export default function SignInSection() {
                     required
                   />
                   <Link
-                    href="#"
+                    href="/forgot-password"
                     className="self-end text-[14px] leading-5 text-[#AF8F5B] transition hover:underline"
                   >
                     Forgot password?
