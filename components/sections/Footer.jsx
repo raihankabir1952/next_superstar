@@ -18,21 +18,18 @@ export default function Footer() {
   return (
     <footer className="bg-[#F5F5F3] pt-[60px] pb-[50px]">
       <Container>
-        {/* Top Area */}
-
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
-          {/* Logo + Description */}
-
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <Image
-                src="/images/logo/logo.svg"
-                alt="Next Superstar"
+                src="/images/logo/logo-star.svg"
+                alt="Next Superstar logo"
                 width={26}
                 height={26}
+                className="shrink-0"
               />
 
-              <span className="text-[18px] font-medium text-black">
+              <span className="whitespace-nowrap text-[20px] font-normal leading-none text-black">
                 Next Superstar
               </span>
             </div>
@@ -41,8 +38,6 @@ export default function Footer() {
               Where talent meets opportunity. Discover your path to
               stardom with guidance from industry leaders.
             </p>
-
-            {/* Social Icons */}
 
             <div className="mt-6 flex items-center gap-4">
               <Link href="#">
@@ -77,8 +72,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
-
           <div>
             <h4 className="text-sm font-medium text-[#AF8F5B]">
               Quick Links
@@ -97,8 +90,6 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Support */}
 
           <div>
             <h4 className="text-sm font-medium text-[#AF8F5B]">
@@ -120,22 +111,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
-
         <div className="mt-10 h-px w-full bg-[#AF8F5B]/40" />
 
-        {/* Bottom Bar */}
-
         <div className="mt-6 flex flex-col items-center justify-between gap-4 text-xs text-[#666666] sm:flex-row">
-          <p>
-            © 2026 Next Superstar. ATN Bangla. All rights reserved.
-          </p>
+          <p>© 2026 Next Superstar. ATN Bangla. All rights reserved.</p>
 
           <p>
-            Made by{" "}
-            <span className="text-[#AF8F5B]">
-              ApplyingNext
-            </span>
+            Made by <span className="text-[#AF8F5B]">ApplyingNext</span>
           </p>
         </div>
       </Container>
