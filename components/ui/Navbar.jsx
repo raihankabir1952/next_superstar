@@ -6,9 +6,9 @@ import Container from "@/components/layout/Container";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 
 const navItems = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#about" },
-  { label: "Contestants", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/#about" },
+  { label: "Contestants", href: "/contestants" },
   { label: "News", href: "#" },
   { label: "Contact", href: "#" },
 ];
@@ -36,16 +36,30 @@ function LogoStar({ size = 35 }) {
   );
 }
 
-export default function Navbar() {
+/**
+ * Navbar with two variants:
+ * - "dark" (default): absolute on hero, semi-transparent dark bg, white text
+ * - "light": static on white pages, white bg, black text
+ */
+export default function Navbar({ variant = "dark" }) {
   const [open, setOpen] = useState(false);
 
+  const isLight = variant === "light";
+
+  const wrapperClass = isLight
+    ? "relative z-50 bg-white"
+    : "absolute inset-x-0 top-0 z-50 bg-[rgba(61,46,21,0.37)]";
+
+  const textColor = isLight ? "text-black" : "text-white";
+  const hoverColor = isLight ? "hover:text-black/70" : "hover:text-white/80";
+
   return (
-    <header className="absolute inset-x-0 top-0 z-50 bg-[rgba(61,46,21,0.37)]">
+    <header className={wrapperClass}>
       <Container className="py-6">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex shrink-0 items-center gap-[10px]">
             <LogoStar size={35} />
-            <span className="text-[30px] font-normal leading-none text-white">
+            <span className={`text-[30px] font-normal leading-none ${textColor}`}>
               Next Superstar
             </span>
           </Link>
@@ -55,7 +69,7 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-[18px] font-medium text-white transition hover:text-white/80"
+                className={`text-[18px] font-medium transition ${textColor} ${hoverColor}`}
               >
                 {item.label}
               </Link>
@@ -69,7 +83,11 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setOpen((prev) => !prev)}
-            className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/20 bg-white/10 text-white lg:hidden"
+            className={`flex h-11 w-11 items-center justify-center rounded-lg border lg:hidden ${
+              isLight
+                ? "border-black/20 bg-black/5 text-black"
+                : "border-white/20 bg-white/10 text-white"
+            }`}
             aria-label="Toggle menu"
           >
             <span className="text-xl leading-none">{open ? "×" : "☰"}</span>
