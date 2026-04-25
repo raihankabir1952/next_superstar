@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Container from "@/components/layout/Container";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import { CalendarDays, Award, MapPin } from "lucide-react";
@@ -23,9 +24,11 @@ export default function CtaSection() {
           </div>
 
           <div className="flex flex-col items-center gap-3">
-            <PrimaryButton>
-              Create Account &amp; Start Application
-            </PrimaryButton>
+            <Link href="/register">
+              <PrimaryButton>
+                Create Account &amp; Start Application
+              </PrimaryButton>
+            </Link>
             <p className="text-[16px] text-black">
               Free · Under 2 minutes · All 64 districts welcome
             </p>
