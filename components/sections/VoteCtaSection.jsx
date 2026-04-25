@@ -1,5 +1,6 @@
 import Container from "@/components/layout/Container";
 import PrimaryButton from "@/components/ui/PrimaryButton";
+import Link from "next/link";
 
 export default function VoteCtaSection() {
   return (
@@ -16,7 +17,9 @@ export default function VoteCtaSection() {
             </p>
           </div>
 
-          <PrimaryButton>Create Voting Account</PrimaryButton>
+          <Link href="/register">
+            <PrimaryButton>Create Voting Account</PrimaryButton>
+          </Link>
         </div>
       </Container>
     </section>
