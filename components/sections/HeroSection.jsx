@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "../ui/Navbar";
 import Container from "../layout/Container";
 import PrimaryButton from "../ui/PrimaryButton";
@@ -62,7 +63,9 @@ export default function HeroSection() {
           </p>
 
           {/* Button */}
-          <PrimaryButton>Start Your Journey</PrimaryButton>
+          <PrimaryButton as={Link} href="/register">
+            Start Your Journey
+          </PrimaryButton>
         </div>
       </Container>
     </section>
