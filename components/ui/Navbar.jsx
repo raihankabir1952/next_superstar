@@ -88,7 +88,7 @@ export default function Navbar({ variant = "dark", isAuthenticated = false }) {
                 Log Out
               </button>
             ) : (
-              <PrimaryButton as={Link} href="/register">
+              <PrimaryButton as={Link} href="/register" onClick={() => setOpen(false)}>
                 Register Now
               </PrimaryButton>
             )}
@@ -131,7 +131,7 @@ export default function Navbar({ variant = "dark", isAuthenticated = false }) {
                   Log Out
                 </button>
               ) : (
-                <PrimaryButton as={Link} href="#">
+                <PrimaryButton as={Link} href="/register" onClick={() => setOpen(false)} >
                   Register Now
                 </PrimaryButton>
               )}
